@@ -43,6 +43,7 @@ class RegisterRepository
 
     public function validate(string $mobile, string $code)
     {
+
         $cacheKey = config('admin.extensions.laravel_admin_register.cache_key', 'register.code.').$mobile;
 
         $cache = Cache::get($cacheKey);

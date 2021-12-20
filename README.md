@@ -65,22 +65,28 @@ class AuthController extends BaseAuthController
 ## 编辑扩展配置
 在 config/admin.php 添加配置
 
+
 ```php
 'extensions' => [
     'laravel_admin_register' => [
         'cache_key' => 'register.code.', // 缓存前缀
         'send_limit' => 60, // 限制 60 秒内只能发一次
         'expires_in' => 300, // 5 分钟（300秒）内有效
-        'is_mock' => true, // 为 true 时不发短信，验证码为 0000
+        'is_mock' => env('REGISTER_IS_MOCK','true'), // 为 true 时不发短信，验证码为 0000
         'database' => [
-            'username_field' => 'mobile', // 管理员数据库唯一索引字段，也就是存储手机号码的字段
+            'username_field' => 'mobile', // 存储手机号码的字段
+            'username' => '注册会员', // 用户名
+            'name' => '游客', // 默认名称，默认为手机号
         ],
-        'register_as' => 'administrator', // 用户注册的默认角色 slug，可以登录后去创建角色
+        'register_as' => 'register', // 用户注册的默认角色 register，先用admin账户登录创建角色，开发中可默认为 administrator
     ]
 ],
 ```
 
 ## 短信发送自定义
+```
+.env中可以通过REGISTER_IS_MOCK配置是否为mock模式
+```
 编辑 app/Providers/AppServiceProvider.php
 ```php
 public function register()

@@ -62,6 +62,8 @@ class LaravelAdminRegisterController extends AuthController
         $admin = new Administrator;
         $admin->{$field} = $data['mobile'];
         $admin->password = bcrypt($data['password']);
+        $admin->username = config('admin.extensions.laravel_admin_register.database.username', '注册会员');
+        $admin->name     = config('admin.extensions.laravel_admin_register.database.name', $data['mobile']);
         $admin->save();
 
         $admin->roles()->attach(Role::query()->where('slug', config('admin.extensions.laravel_admin_register.register_as', 'administrator'))->first());

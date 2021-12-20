@@ -36,7 +36,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">注册</p>
 
-    <form action="{{ route('register') }}" method="post">
+    <form action="{{ admin_url('register') }}" method="post">
       <div class="form-group has-feedback {!! !$errors->has('mobile') ?: 'has-error' !!}">
 
         @if($errors->has('mobile'))
@@ -48,7 +48,7 @@
         <input type="text" class="form-control" placeholder="手机号码" name="mobile" value="{{ old('mobile') }}" v-model="mobile">
         <span class="glyphicon glyphicon-phone form-control-feedback"></span>
       </div>
-      <div class="form-group mb-3 has-feedback {!! !$errors->has('code') ?: 'has-error' !!}" style="display: flex;">
+      <div class="form-group mb-3 has-feedback {!! !$errors->has('code') ?: 'has-error' !!}">
 
         @if($errors->has('code'))
           @foreach($errors->get('code') as $message)
@@ -56,9 +56,11 @@
           @endforeach
         @endif
 
-        <input type="text" class="form-control" placeholder="验证码" name="code">
-        <div class="input-group-append">
-          <button v-bind:disabled="count_down != 60" class="btn btn-outline-secondary" type="button" v-on:click="sendCode">@{{ code_text }}</button>
+        <div style="display: flex;">
+          <input type="text" class="form-control" placeholder="验证码" name="code">
+          <div class="input-group-append">
+            <button v-bind:disabled="count_down != 60" class="btn btn-outline-secondary" type="button" v-on:click="sendCode">@{{ code_text }}</button>
+          </div>
         </div>
       </div>
       <div class="form-group has-feedback {!! !$errors->has('password') ?: 'has-error' !!}">
@@ -75,7 +77,7 @@
       <div class="row">
         <!-- /.col -->
         <div class="col-xs-8">
-          <a href="/admin/auth/login">前往登录</a>
+          <a href="{{admin_url('auth/login')}}">已经注册？前往登录</a>
         </div>
         <div class="col-xs-4">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
