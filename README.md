@@ -7,7 +7,7 @@ laravel-admin 短信注册扩展
 
 安装依赖
 ```
-composer require hanson/laravel-admin-register:dev-master
+composer require rengang/laravel-admin-register:dev-master
 ```
 
 # 配置

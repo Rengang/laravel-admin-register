@@ -1,17 +1,11 @@
 {
-    "name": "hanson/laravel-admin-register",
-    "description": "description...",
+    "name": "rengang/laravel-admin-register",
+    "description": "laravel-admin register by mobile",
     "type": "library",
     "keywords": ["laravel-admin", "extension"],
-    "homepage": "https://github.com/hanson/laravel-admin-register",
+    "homepage": "https://github.com/Rengang/laravel-admin-register",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Hanson",
-            "email": "h@hanc.cc"
-        }
-    ],
-    "require": {
+        "require": {
         "php": ">=7.0.0",
         "ext-json": "*",
         "overtrue/easy-sms": "^1.1"
